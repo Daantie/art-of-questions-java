@@ -1,7 +1,6 @@
 package eu.luminis.artofquestionsjava.config;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.huggingface.HuggingFaceChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

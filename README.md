@@ -20,14 +20,14 @@ Change the prompt template in the [ChatService](src/main/java/eu/luminis/artofqu
 Interact with the LLMs in the [ChatService](src/main/java/eu/luminis/artofquestionsjava/service/ChatService.java) class and return their responses.
 
 ### Task #4
-Run the project and use the web interface at http://localhost:8080/chat to start using the LLMs to answer your questions.
+Run the project and check the application logs for the responses of the LLMs.
 
 ### Task #5
 Try changing the temperature of your LLMs in the [ArtOfQuestionsConfig](src/main/java/eu/luminis/artofquestionsjava/config/ArtOfQuestionsConfig.java) configuration class. Re-run your application afterwards and observe what happens to the responses.
 You could also try to change the max(New)Tokens for the LLMs and see what happens.
 
 ### Task 6
-Try changing your prompt template in the [ChatService](src/main/java/eu/luminis/artofquestionsjava/service/ChatService.java) class so it returns a list when asking which cities the conference is held.
+Try changing your prompt template in the [ChatService](src/main/java/eu/luminis/artofquestionsjava/service/ChatService.java) class, so it returns a list when asking which cities the conference is held.
 
 ### Task 7
 Try changing your prompt template in the [ChatService](src/main/java/eu/luminis/artofquestionsjava/service/ChatService.java) class so it returns JSON format. Make it return objects which contain the country and the city when asking which cities the conference is held.
