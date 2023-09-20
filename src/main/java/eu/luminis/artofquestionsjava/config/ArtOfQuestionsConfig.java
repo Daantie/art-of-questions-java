@@ -1,31 +1,53 @@
 package eu.luminis.artofquestionsjava.config;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.huggingface.HuggingFaceEmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import dev.langchain4j.store.embedding.weaviate.WeaviateEmbeddingStore;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static dev.langchain4j.model.huggingface.HuggingFaceModelName.*;
 import static dev.langchain4j.model.openai.OpenAiModelName.*;
 
 @Configuration
 public class ArtOfQuestionsConfig {
     private final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
-    private final String HUGGINGFACEHUB_API_KEY = System.getenv("HUGGINGFACEHUB_API_KEY");
+    private final String HUGGINGFACE_API_KEY = System.getenv("HUGGINGFACE_API_KEY");
+    private final String WEAVIATE_API_KEY = System.getenv("WEAVIATE_API_KEY");
+    private final String WEAVIATE_URL = System.getenv("WEAVIATE_URL");
 
-    @Qualifier("openai")
+    @Qualifier("openaiEmbedding")
     @Bean
-    public ChatLanguageModel openAiChatLanguageModel() {
-        String modelName = GPT_3_5_TURBO;
-        // TODO: Initiate an openAI chat language model
+    public EmbeddingModel openAiEmbeddingModel() {
+        String modelName = TEXT_EMBEDDING_ADA_002;
+        // TODO: Initiate an openAI embedding model
         return null;
     }
 
-    @Qualifier("huggingFace")
+    @Qualifier("inMemoryEmbeddingStore")
     @Bean
-    public ChatLanguageModel huggingFaceChatLanguageModel() {
-        String modelId = TII_UAE_FALCON_7B_INSTRUCT;
-        // TODO: Initiate a HuggingFace chat language model
+    public EmbeddingStore<TextSegment> inMemoryEmbeddingStore() {
+        // TODO: Initiate an in memory embedding store
+        return null;
+    }
+
+
+    @Qualifier("huggingFaceEmbedding")
+    @Bean
+    public EmbeddingModel huggingFaceEmbeddingModel() {
+        String modelId = "sentence-transformers/all-mpnet-base-v2";
+        // TODO: Initiate a HuggingFace embedding model
+        return null;
+    }
+
+    @Qualifier("weaviateEmbeddingStore")
+    @Bean
+    public EmbeddingStore<TextSegment> weaviateEmbeddingStore() {
+        // TODO: Initiate a Weaviate embedding store
         return null;
     }
 }
