@@ -25,11 +25,13 @@ public class IngestService {
     }
 
     public void ingestText(String text) {
-        // TODO: Implement the ingestion part with the use of the EmbeddingStoreIngestor class
-        // Some pointers:
-        // - The EmbeddingStoreIngestor class has a builder method
-        // - Pass it a DocumentSplitter object with a maxSegmentSizeInChars of 300
-        // - Also pass the model and store
-        // - Create a Document object from the text String and use the ingestor to ingest that Document object
+        Document document = Document.from(text);
+        DocumentSplitter documentSplitter = DocumentSplitters.recursive(300);
+        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+                .documentSplitter(documentSplitter)
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .build();
+        ingestor.ingest(document);
     }
 }

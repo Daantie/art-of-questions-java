@@ -1,6 +1,5 @@
 package eu.luminis.artofquestionsjava.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.langchain4j.data.embedding.Embedding;
@@ -27,13 +26,10 @@ public class SearchService {
 
     public List<EmbeddingMatch<TextSegment>> search() {
         String question = "Who should I contact to become a sponsor?";
-        List<EmbeddingMatch<TextSegment>> answers = new ArrayList<>();
+        List<EmbeddingMatch<TextSegment>> answers;
 
-        // TODO: implement the search flow with the embedding store.
-        // Some pointers:
-        // - Create an embedding for the above question. Use that embedding to search in the embedding store.
-        // - Make sure you use the same embedding model as you used for embedding your data!
-        // - Convert the search results to a list of strings and return that.
+        Embedding queryEmbedding = embeddingModel.embed(question);
+        answers = embeddingStore.findRelevant(queryEmbedding, 4, 0.75);
 
         LOGGER.info("Results for the question: {}", question);
         return answers;

@@ -1,8 +1,5 @@
-# Data Parsing & Semantic (Vector) Search
-This assignment is about parsing data, vectorizing your text and ingesting your vectors (or embeddings) into a vector/embedding store.
-Next to that we're also going to perform semantic search, where we're going to search for semantically similar texts.
-
-For this assignment, make sure you have all the environment variables set.
+# Putting it all together to implement RAG (Retrieval Augmented Generation)
+The title says it all. In this assignment we're going to put all the previous assignments together and implement RAG.
 
 ## Data parsing with Unstructured
 ### Task 1
