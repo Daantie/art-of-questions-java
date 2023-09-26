@@ -24,14 +24,14 @@ public class ArtOfQuestionsConfig {
     @Bean
     public EmbeddingModel openAiEmbeddingModel() {
         String modelName = TEXT_EMBEDDING_ADA_002;
-        // TODO: Initiate an openAI embedding model
+        // TODO: Initiate an openAI embedding model. Make sure to use the OPENAI_API_KEY property as API key.
         return null;
     }
 
     @Qualifier("inMemoryEmbeddingStore")
     @Bean
     public EmbeddingStore<TextSegment> inMemoryEmbeddingStore() {
-        // TODO: Initiate an in memory embedding store
+        // TODO: Initiate an in memory embedding store.
         return null;
     }
 
@@ -40,14 +40,14 @@ public class ArtOfQuestionsConfig {
     @Bean
     public EmbeddingModel huggingFaceEmbeddingModel() {
         String modelId = "sentence-transformers/all-mpnet-base-v2";
-        // TODO: Initiate a HuggingFace embedding model
+        // TODO: Initiate a HuggingFace embedding model. Make sure to use the HUGGINGFACE_API_KEY property as access token.
         return null;
     }
 
     @Qualifier("weaviateEmbeddingStore")
     @Bean
     public EmbeddingStore<TextSegment> weaviateEmbeddingStore() {
-        // TODO: Initiate a Weaviate embedding store
+        // TODO: Initiate a Weaviate embedding store. Make sure to use the WEAVIATE_API_KEY property as API key and WEAVIATE_URL as host.
         return null;
     }
 }
