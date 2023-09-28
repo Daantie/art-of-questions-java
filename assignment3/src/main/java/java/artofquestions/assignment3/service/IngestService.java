@@ -18,8 +18,7 @@ public class IngestService {
     private final EmbeddingModel embeddingModel;
     private final EmbeddingStore<TextSegment> embeddingStore;
 
-    public IngestService(@Qualifier("openaiEmbedding") EmbeddingModel embeddingModel,
-                         @Qualifier("inMemoryEmbeddingStore") EmbeddingStore<TextSegment> embeddingStore) {
+    public IngestService(@Qualifier("openaiEmbedding") EmbeddingModel embeddingModel, EmbeddingStore<TextSegment> embeddingStore) {
         this.embeddingModel = embeddingModel;
         this.embeddingStore = embeddingStore;
     }

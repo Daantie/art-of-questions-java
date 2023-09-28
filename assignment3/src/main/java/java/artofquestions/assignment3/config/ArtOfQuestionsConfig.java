@@ -7,6 +7,7 @@ import dev.langchain4j.model.huggingface.HuggingFaceChatModel;
 import dev.langchain4j.model.huggingface.HuggingFaceEmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.retriever.EmbeddingStoreRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import dev.langchain4j.store.embedding.weaviate.WeaviateEmbeddingStore;
@@ -58,12 +59,6 @@ public class ArtOfQuestionsConfig {
                 .build();
     }
 
-    @Qualifier("inMemoryEmbeddingStore")
-    @Bean
-    public EmbeddingStore<TextSegment> inMemoryEmbeddingStore() {
-        return new InMemoryEmbeddingStore<>();
-    }
-
     @Qualifier("huggingFaceEmbedding")
     @Bean
     public EmbeddingModel huggingFaceEmbeddingModel() {
@@ -73,13 +68,19 @@ public class ArtOfQuestionsConfig {
                 .build();
     }
 
-    @Qualifier("weaviateEmbeddingStore")
     @Bean
-    public EmbeddingStore<TextSegment> weaviateEmbeddingStore() {
+    public EmbeddingStore<TextSegment> embeddingStore() {
+        // You can use the InMemoryEmbeddingStore here or create a Weaviate store if you decided to work with Weaviate
+        // return new InMemoryEmbeddingStore<>();
         return WeaviateEmbeddingStore.builder()
                 .apiKey(WEAVIATE_API_KEY)
                 .scheme("https")
                 .host(WEAVIATE_URL)
                 .build();
+    }
+
+    @Bean
+    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore) {
+        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
     }
 }

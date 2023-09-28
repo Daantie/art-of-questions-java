@@ -26,9 +26,8 @@ public class ChatService {
     }
 
     private Prompt createPrompt() {
-        // TODO: Change this prompt template to get a better response from the LLMs
         String question = "At which city is the Devoxx conference held?";
-        PromptTemplate promptTemplate = PromptTemplate.from("Answer this question: {{question}}");
+        PromptTemplate promptTemplate = PromptTemplate.from("Answer the question between triple backticks to the best of your ability. If you don't know the answer, just say that you don't know the answer. ```{{question}}```");
         Map<String, Object> variables = new HashMap<>();
         variables.put("question", question);
         return promptTemplate.apply(variables);
@@ -37,11 +36,13 @@ public class ChatService {
     public Map<String, String> chat() {
         Prompt prompt = createPrompt();
         LOGGER.info("Created prompt: {}", prompt.text());
-        // TODO: Interact with the LLMs, get their response and add those to the below map
+
+        String openaiResponse = openAiModel.sendUserMessage(prompt.toUserMessage()).text();
+        String huggingFaceResponse = huggingFaceModel.sendMessages(prompt.toUserMessage()).text();
 
         Map<String, String> llmResponses = new HashMap<>();
-        llmResponses.put(OPENAI_RESPONSE, "");
-        llmResponses.put(HUGGINGFACE_RESPONSE, "");
+        llmResponses.put(OPENAI_RESPONSE, openaiResponse);
+        llmResponses.put(HUGGINGFACE_RESPONSE, huggingFaceResponse);
         return llmResponses;
     }
 }

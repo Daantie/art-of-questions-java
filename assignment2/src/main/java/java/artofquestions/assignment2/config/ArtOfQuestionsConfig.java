@@ -7,8 +7,8 @@ import dev.langchain4j.model.huggingface.HuggingFaceChatModel;
 import dev.langchain4j.model.huggingface.HuggingFaceEmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.retriever.EmbeddingStoreRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import dev.langchain4j.store.embedding.weaviate.WeaviateEmbeddingStore;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -33,8 +33,6 @@ public class ArtOfQuestionsConfig {
                 .temperature(0.7)
                 .timeout(ofSeconds(15))
                 .maxRetries(3)
-                .logResponses(true)
-                .logRequests(true)
                 .build();
     }
 
@@ -44,39 +42,42 @@ public class ArtOfQuestionsConfig {
         return HuggingFaceChatModel.builder()
                 .accessToken(HUGGINGFACE_API_KEY)
                 .modelId("sentence-transformers/all-mpnet-base-v2")
-                .timeout(ofSeconds(15))
                 .temperature(0.7)
+                .timeout(ofSeconds(15))
                 .build();
     }
 
     @Qualifier("openaiEmbedding")
     @Bean
     public EmbeddingModel openAiEmbeddingModel() {
-        String modelName = TEXT_EMBEDDING_ADA_002;
-        // TODO: Initiate an openAI embedding model. Make sure to use the OPENAI_API_KEY property as API key.
-        return null;
+        return OpenAiEmbeddingModel.builder()
+                .apiKey(OPENAI_API_KEY)
+                .modelName(TEXT_EMBEDDING_ADA_002)
+                .build();
     }
-
-    @Qualifier("inMemoryEmbeddingStore")
-    @Bean
-    public EmbeddingStore<TextSegment> inMemoryEmbeddingStore() {
-        // TODO: Initiate an in memory embedding store.
-        return null;
-    }
-
 
     @Qualifier("huggingFaceEmbedding")
     @Bean
     public EmbeddingModel huggingFaceEmbeddingModel() {
-        String modelId = "sentence-transformers/all-mpnet-base-v2";
-        // TODO: Initiate a HuggingFace embedding model. Make sure to use the HUGGINGFACE_API_KEY property as access token.
-        return null;
+        return HuggingFaceEmbeddingModel.builder()
+                .accessToken(HUGGINGFACE_API_KEY)
+                .modelId("sentence-transformers/all-mpnet-base-v2")
+                .build();
     }
 
-    @Qualifier("weaviateEmbeddingStore")
     @Bean
-    public EmbeddingStore<TextSegment> weaviateEmbeddingStore() {
-        // TODO: Initiate a Weaviate embedding store. Make sure to use the WEAVIATE_API_KEY property as API key and WEAVIATE_URL as host.
-        return null;
+    public EmbeddingStore<TextSegment> embeddingStore() {
+        // You can use the InMemoryEmbeddingStore here or create a Weaviate store if you decided to work with Weaviate
+        // return new InMemoryEmbeddingStore<>();
+        return WeaviateEmbeddingStore.builder()
+                .apiKey(WEAVIATE_API_KEY)
+                .scheme("https")
+                .host(WEAVIATE_URL)
+                .build();
+    }
+
+    @Bean
+    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore) {
+        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
     }
 }

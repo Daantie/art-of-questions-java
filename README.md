@@ -13,7 +13,7 @@ We are integrating with a number of other tools and services. For that, we need 
 
 The environment variables we need for this workshop are as follows:
 - OPENAI_API_KEY
-- HUGGINGFACEHUB_API_KEY
+- HUGGINGFACE_API_KEY
 - UNSTRUCTURED_API_KEY
 - WEAVIATE_API_KEY
 - WEAVIATE_CLUSTER_URL
