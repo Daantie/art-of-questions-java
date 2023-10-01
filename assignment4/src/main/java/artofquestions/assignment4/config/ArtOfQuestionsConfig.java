@@ -27,69 +27,42 @@ public class ArtOfQuestionsConfig {
     @Qualifier("openaiChatModel")
     @Bean
     public ChatLanguageModel openAiChatLanguageModel() {
-        return OpenAiChatModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(GPT_3_5_TURBO)
-                .temperature(0.2)
-                .timeout(ofSeconds(15))
-                .maxRetries(3)
-                .logResponses(true)
-                .logRequests(true)
-                .build();
-    }
-
-    @Qualifier("huggingFaceChatModel")
-    @Bean
-    public ChatLanguageModel huggingFaceChatLanguageModel() {
-        return HuggingFaceChatModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId(TII_UAE_FALCON_7B_INSTRUCT)
-                .timeout(ofSeconds(15))
-                .temperature(0.7)
-                .maxNewTokens(200)
-                .build();
+        // TODO: Copy over from any previous assignment
+        return null;
     }
 
     @Qualifier("openaiEmbedding")
     @Bean
     public EmbeddingModel openAiEmbeddingModel() {
-        return OpenAiEmbeddingModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(TEXT_EMBEDDING_ADA_002)
-                .build();
+        // TODO: Copy over from any previous assignment
+        return null;
     }
 
     @Qualifier("faqStore")
     @Bean
     public EmbeddingStore<TextSegment> faqEmbeddingStore() {
-        return WeaviateEmbeddingStore.builder()
-                .apiKey(WEAVIATE_API_KEY)
-                .scheme("https")
-                .objectClass("FAQ")
-                .host(WEAVIATE_URL)
-                .build();
+        // TODO: Initiate a weaviate embedding store with objectClass "FAQ"
+        return null;
     }
 
     @Qualifier("talksStore")
     @Bean
     public EmbeddingStore<TextSegment> talksEmbeddingStore() {
-        return WeaviateEmbeddingStore.builder()
-                .apiKey(WEAVIATE_API_KEY)
-                .scheme("https")
-                .objectClass("Talks")
-                .host(WEAVIATE_URL)
-                .build();
+        // TODO: Initiate a weaviate embedding store with objectClass "Talks"
+        return null;
     }
 
     @Qualifier("faqRetriever")
     @Bean
     public EmbeddingStoreRetriever faqRetriever(@Qualifier("faqStore") EmbeddingStore<TextSegment> embeddingStore) {
-        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
+        // TODO: Initiate an embedding store retriever for the FAQ store
+        return null;
     }
 
     @Qualifier("talksRetriever")
     @Bean
     public EmbeddingStoreRetriever talksRetriever(@Qualifier("talksStore") EmbeddingStore<TextSegment> embeddingStore) {
-        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
+        // TODO: Initiate an embedding store retriever for the talks store
+        return null;
     }
 }

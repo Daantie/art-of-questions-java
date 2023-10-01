@@ -11,13 +11,7 @@ public class SearchTools {
         this.questionAnswerService = questionAnswerService;
     }
 
-    @Tool("Answers FAQ related questions about Devoxx Belgium")
-    String searchFaq(String question) {
-        return questionAnswerService.answerFaqQuestion(question);
-    }
-
-    @Tool("Answers questions related to the talks on the Devoxx Belgium conference")
-    String searchTalks(String question) {
-        return questionAnswerService.answerTalksQuestion(question);
-    }
+    // TODO: add tools here that call the answerFaqQuestion and answerTalksQuestion methods of the questionAnswerService.
+    // You can use this example as inspiration:
+    // https://github.com/langchain4j/langchain4j-examples/blob/main/other-examples/src/main/java/ServiceWithToolsExample.java
 }

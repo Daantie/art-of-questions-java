@@ -26,23 +26,11 @@ public class IngestService {
         this.talksStore = talksStore;
     }
 
-    public void ingestDocument(Document document) {
-        DocumentSplitter documentSplitter = DocumentSplitters.recursive(300, 100);
-        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .documentSplitter(documentSplitter)
-                .embeddingModel(embeddingModel)
-                .embeddingStore(faqStore)
-                .build();
-        ingestor.ingest(document);
+    public void ingestFaqDocument(Document document) {
+        // TODO: Implement embedding store ingestor which uses the faqStore. Don't forget the document splitter and to ingest the data.
     }
 
-    public void ingestDocuments(List<Document> documentList) {
-        DocumentSplitter documentSplitter = DocumentSplitters.recursive(300, 100);
-        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .documentSplitter(documentSplitter)
-                .embeddingModel(embeddingModel)
-                .embeddingStore(talksStore)
-                .build();
-        ingestor.ingest(documentList);
+    public void ingestTalksDocuments(List<Document> documentList) {
+        // TODO: Implement embedding store ingestor which uses the talksStore. Don't forget the document splitter and to ingest the data.
     }
 }

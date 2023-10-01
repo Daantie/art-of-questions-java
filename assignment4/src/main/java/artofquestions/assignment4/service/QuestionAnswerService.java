@@ -11,37 +11,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionAnswerService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(QuestionAnswerService.class);
     private final ConversationalRetrievalChain faqRetrievalChain;
     private final ConversationalRetrievalChain talksRetrievalChain;
-    private final PromptTemplate promptTemplate = PromptTemplate.from("Answer the following question to the best of your ability: {{question}}\n" +
-            "\n" +
-            "Base your answer on the following information:\n" +
-            "{{information}}");
+    // TODO: Add your awesome prompt here again (maybe copy over from previous assignment)
+    private final PromptTemplate promptTemplate = PromptTemplate.from("{{question}} {{information}}");
 
     public QuestionAnswerService(@Qualifier("openaiChatModel") ChatLanguageModel openaiChatModel,
                                  @Qualifier("faqRetriever") EmbeddingStoreRetriever faqRetriever,
                                  @Qualifier("talksRetriever") EmbeddingStoreRetriever talksRetriever) {
-        faqRetrievalChain = ConversationalRetrievalChain.builder()
-                .chatLanguageModel(openaiChatModel)
-                .promptTemplate(promptTemplate)
-                .retriever(faqRetriever)
-                .build();
 
-        talksRetrievalChain = ConversationalRetrievalChain.builder()
-                .chatLanguageModel(openaiChatModel)
-                .promptTemplate(promptTemplate)
-                .retriever(talksRetriever)
-                .build();
+        // TODO: Initiate a ConversationalRetrievalChain for FAQ question answering
+        faqRetrievalChain = null;
+
+        // TODO: Initiate a ConversationalRetrievalChain for Talks question answering
+        talksRetrievalChain = null;
     }
 
     public String answerFaqQuestion(String question) {
-        LOGGER.info("-------- Answering FAQ question: {} --------", question);
-        return faqRetrievalChain.execute(question);
+        // TODO: execute the question with the FAQ chain
+        return null;
     }
 
     public String answerTalksQuestion(String question) {
-        LOGGER.info("-------- Answering Talks question: {} --------", question);
-        return talksRetrievalChain.execute(question);
+        // TODO: execute the question with the Talks chain
+        return null;
     }
 }

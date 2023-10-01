@@ -5,7 +5,7 @@ Next to that we're also going to perform semantic search, where we're going to s
 For this assignment, make sure you have all the environment variables set ([see root README](../README.md)).
 
 ### Task #1
-Copy over your solution in the `ArtOfQuestionsConfig` from Assignment 1 to [this assignment's ArtOfQuestionsConfig](src/main/java/eu/luminis/artofquestionsjava/config/ArtOfQuestionsConfig.java)
+Copy over your solution in the `ArtOfQuestionsConfig` from Assignment 1 to [this assignment's ArtOfQuestionsConfig](src/main/java/eu/luminis/artofquestionsjava/config/ArtOfQuestionsConfig.java).
 
 ## Data parsing with Unstructured
 ### Task #2

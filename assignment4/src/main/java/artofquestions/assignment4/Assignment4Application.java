@@ -31,15 +31,15 @@ public class Assignment4Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws IOException {
-//        LOGGER.info("Parsing FAQ data...");
-//        Document faqData = documentParseService.parseFaqData();
-//        LOGGER.info("Ingesting FAQ data...");
-//        ingestService.ingestDocument(faqData);
-//
-//        LOGGER.info("Parsing Talks data...");
-//        List<Document> talkData = documentParseService.parseTalksData();
-//        LOGGER.info("Ingesting Talks data...");
-//        ingestService.ingestDocuments(talkData);
+        LOGGER.info("Parsing FAQ data...");
+        Document faqData = documentParseService.parseFaqData();
+        LOGGER.info("Ingesting FAQ data...");
+        ingestService.ingestFaqDocument(faqData);
+
+        LOGGER.info("Parsing Talks data...");
+        List<Document> talkData = documentParseService.parseTalksData();
+        LOGGER.info("Ingesting Talks data...");
+        ingestService.ingestTalksDocuments(talkData);
 
         LOGGER.info("Are there any talks about machine learning?");
         LOGGER.info(functionCallService.callFunction("Are there any talks about machine learning?"));

@@ -10,25 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class FunctionCallService {
 
-    private final Assistant assistant;
+    // TODO: Implement an AI service that uses the openaiChatModel and the searchTools to decide which functions (or tools) to use.
+    // The callFunction method should return the answer to the question.
+    // You can use this example as a reference:
+    // https://github.com/langchain4j/langchain4j-examples/blob/main/other-examples/src/main/java/ServiceWithToolsExample.java
 
     public FunctionCallService(@Qualifier("openaiChatModel") ChatLanguageModel openaiChatModel, SearchTools searchTools) {
-        this.assistant = AiServices.builder(Assistant.class)
-                .chatLanguageModel(openaiChatModel)
-                .tools(searchTools)
-                .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
-                .build();
-    }
 
-    interface Assistant {
-        @SystemMessage({
-                "You are a support chatbot of a conference named 'Devoxx Belgium'.",
-                "Choose the correct function to execute depending on the question asked."
-        })
-        String chat(String userMessage);
     }
 
     public String callFunction(String question) {
-        return assistant.chat(question);
+        return null;
     }
 }
