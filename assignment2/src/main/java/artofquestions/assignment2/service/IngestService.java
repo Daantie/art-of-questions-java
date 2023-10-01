@@ -21,12 +21,11 @@ public class IngestService {
     }
 
     public void ingestDocument(Document document) {
-        DocumentSplitter documentSplitter = DocumentSplitters.recursive(300, 100);
-        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .documentSplitter(documentSplitter)
-                .embeddingModel(embeddingModel)
-                .embeddingStore(embeddingStore)
-                .build();
-        ingestor.ingest(document);
+        // TODO: Implement the ingestion part with the use of the EmbeddingStoreIngestor class
+        // Some pointers:
+        // - The EmbeddingStoreIngestor class has a builder method.
+        // - Pass it a DocumentSplitter object with a segment size of 300 and overlap of 100 (this is for chunking).
+        // - Also pass the model and store. Change the @Qualifier name in the constructor if you want to change the model.
+        // - Use the ingestor to ingest the Document object
     }
 }

@@ -28,60 +28,41 @@ public class ArtOfQuestionsConfig {
     @Qualifier("openaiChatModel")
     @Bean
     public ChatLanguageModel openAiChatLanguageModel() {
-        return OpenAiChatModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(GPT_3_5_TURBO)
-                .temperature(0.7)
-                .timeout(ofSeconds(30))
-                .maxRetries(3)
-                .logResponses(true)
-                .logRequests(true)
-                .build();
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 
     @Qualifier("huggingFaceChatModel")
     @Bean
     public ChatLanguageModel huggingFaceChatLanguageModel() {
-        return HuggingFaceChatModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId(TII_UAE_FALCON_7B_INSTRUCT)
-                .timeout(ofSeconds(30))
-                .temperature(0.7)
-                .maxNewTokens(200)
-                .build();
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 
     @Qualifier("openaiEmbedding")
     @Bean
     public EmbeddingModel openAiEmbeddingModel() {
-        return OpenAiEmbeddingModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(TEXT_EMBEDDING_ADA_002)
-                .build();
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 
     @Qualifier("huggingFaceEmbedding")
     @Bean
     public EmbeddingModel huggingFaceEmbeddingModel() {
-        return HuggingFaceEmbeddingModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId("sentence-transformers/all-mpnet-base-v2")
-                .build();
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 
     @Bean
     public EmbeddingStore<TextSegment> embeddingStore() {
-        // You can use the InMemoryEmbeddingStore here or create a Weaviate store if you decided to work with Weaviate
-        // return new InMemoryEmbeddingStore<>();
-        return WeaviateEmbeddingStore.builder()
-                .apiKey(WEAVIATE_API_KEY)
-                .scheme("https")
-                .host(WEAVIATE_URL)
-                .build();
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 
     @Bean
-    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore) {
-        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
+    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore,
+                                                           @Qualifier("openaiEmbedding") EmbeddingModel embeddingModel) {
+        // TODO: Copy over your solution from Assignment 2
+        return null;
     }
 }

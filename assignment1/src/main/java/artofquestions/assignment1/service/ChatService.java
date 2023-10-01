@@ -26,8 +26,10 @@ public class ChatService {
     }
 
     private Prompt createPrompt() {
+        // TODO: Alter this prompt template to influence the response from the LLMs
+        // The {{question}} is a placeholder that's replaced by the below apply method.
         String question = "At which city is the Devoxx conference held?";
-        PromptTemplate promptTemplate = PromptTemplate.from("Answer the question between triple backticks to the best of your ability. If you don't know the answer, just say that you don't know the answer. ```{{question}}```");
+        PromptTemplate promptTemplate = PromptTemplate.from("{{question}}");
         Map<String, Object> variables = new HashMap<>();
         variables.put("question", question);
         return promptTemplate.apply(variables);
@@ -37,12 +39,11 @@ public class ChatService {
         Prompt prompt = createPrompt();
         LOGGER.info("Created prompt: {}", prompt.text());
 
-        String openaiResponse = openAiModel.generate(prompt.toUserMessage()).content().text();
-        String huggingFaceResponse = huggingFaceModel.generate(prompt.toUserMessage()).content().text();
+        // TODO: Interact with the LLMs, get their response and add those to the below map
 
         Map<String, String> llmResponses = new HashMap<>();
-        llmResponses.put(OPENAI_RESPONSE, openaiResponse);
-        llmResponses.put(HUGGINGFACE_RESPONSE, huggingFaceResponse);
+        llmResponses.put(OPENAI_RESPONSE, "");
+        llmResponses.put(HUGGINGFACE_RESPONSE, "");
         return llmResponses;
     }
 }

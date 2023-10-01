@@ -16,6 +16,7 @@ public class SearchService {
 
     public List<TextSegment> search() {
         String question = "Who should I contact to become a sponsor?";
-        return retriever.findRelevant(question);
+        // TODO: Use the retriever to find chunks relevant to the question and return those.
+        return null;
     }
 }

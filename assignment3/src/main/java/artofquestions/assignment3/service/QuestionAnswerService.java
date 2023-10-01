@@ -12,7 +12,10 @@ public class QuestionAnswerService {
     private final ChatLanguageModel openaiChatModel;
     private final ChatLanguageModel huggingFaceChatModel;
     private final EmbeddingStoreRetriever retriever;
+    // TODO: Try different questions (obviously in a normal system the question comes from some user interface).
     private final String question = "Who should I contact to become a sponsor?";
+    //TODO: Change this prompt template so the LLM will answer the question from the information provided.
+    private final PromptTemplate promptTemplate = PromptTemplate.from("{{question}} {{information}}");
 
     public QuestionAnswerService(@Qualifier("openaiChatModel") ChatLanguageModel openaiChatModel,
                                  @Qualifier("huggingFaceChatModel") ChatLanguageModel huggingFaceChatModel,
@@ -22,26 +25,18 @@ public class QuestionAnswerService {
         this.retriever = retriever;
     }
 
-    private PromptTemplate createPromptTemplate() {
-        return PromptTemplate.from("Answer the question between triple backticks with the information provided between triple quotes to the best of your ability. " +
-                "If you don't know the answer, just say you don't know the answer. ```{{question}}``` \"\"\"{{information}}\"\"\"");
-    }
-
     private ConversationalRetrievalChain createRetrievalChain(ChatLanguageModel chatLanguageModel) {
-        return ConversationalRetrievalChain.builder()
-                .chatLanguageModel(chatLanguageModel)
-                .promptTemplate(createPromptTemplate())
-                .retriever(retriever)
-                .build();
+        // TODO: Initiate and return a ConversationalRetrievalChain with the chatLanguageModel, promptTemplate and retriever.
+        return null;
     }
 
     public String generateOpenAiAnswer() {
-        ConversationalRetrievalChain retrievalChain = createRetrievalChain(openaiChatModel);
-        return retrievalChain.execute(question);
+        // TODO: create a ConversationalRetrievalChain object with the openaiChatModel, execute the question and return the answer.
+        return null;
     }
 
     public String generateHuggingFaceAnswer() {
-        ConversationalRetrievalChain retrievalChain = createRetrievalChain(huggingFaceChatModel);
-        return retrievalChain.execute(question);
+        // TODO: create a ConversationalRetrievalChain object with the huggingFaceChatModel, execute the question and return the answer.
+        return null;
     }
 }

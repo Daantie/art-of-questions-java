@@ -19,26 +19,16 @@ public class ArtOfQuestionsConfig {
     @Qualifier("openaiChatModel")
     @Bean
     public ChatLanguageModel openAiChatLanguageModel() {
-        return OpenAiChatModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(GPT_3_5_TURBO)
-                .temperature(0.7)
-                .timeout(ofSeconds(30))
-                .maxRetries(3)
-                .logResponses(true)
-                .logRequests(true)
-                .build();
+        String modelName = GPT_3_5_TURBO;
+        // TODO: Initiate an openAI chat language model
+        return null;
     }
 
     @Qualifier("huggingFaceChatModel")
     @Bean
     public ChatLanguageModel huggingFaceChatLanguageModel() {
-        return HuggingFaceChatModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId(TII_UAE_FALCON_7B_INSTRUCT)
-                .timeout(ofSeconds(30))
-                .temperature(0.7)
-                .maxNewTokens(200)
-                .build();
+        String modelId = TII_UAE_FALCON_7B_INSTRUCT;
+        // TODO: Initiate a HuggingFace chat language model
+        return null;
     }
 }

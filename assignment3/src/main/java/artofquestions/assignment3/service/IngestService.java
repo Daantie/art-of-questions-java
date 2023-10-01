@@ -21,12 +21,6 @@ public class IngestService {
     }
 
     public void ingestDocument(Document document) {
-        DocumentSplitter documentSplitter = DocumentSplitters.recursive(300, 100);
-        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .documentSplitter(documentSplitter)
-                .embeddingModel(embeddingModel)
-                .embeddingStore(embeddingStore)
-                .build();
-        ingestor.ingest(document);
+        // TODO: Copy over your solution from Assignment 2
     }
 }

@@ -28,58 +28,46 @@ public class ArtOfQuestionsConfig {
     @Qualifier("openaiChatModel")
     @Bean
     public ChatLanguageModel openAiChatLanguageModel() {
-        return OpenAiChatModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(GPT_3_5_TURBO)
-                .temperature(0.7)
-                .timeout(ofSeconds(30))
-                .maxRetries(3)
-                .build();
+        // TODO: Copy over your solution from Assignment 1
+        return null;
     }
 
     @Qualifier("huggingFaceChatModel")
     @Bean
     public ChatLanguageModel huggingFaceChatLanguageModel() {
-        return HuggingFaceChatModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId(TII_UAE_FALCON_7B_INSTRUCT)
-                .timeout(ofSeconds(30))
-                .temperature(0.7)
-                .maxNewTokens(200)
-                .build();
+        // TODO: Copy over your solution from Assignment 1
+        return null;
     }
 
     @Qualifier("openaiEmbedding")
     @Bean
     public EmbeddingModel openAiEmbeddingModel() {
-        return OpenAiEmbeddingModel.builder()
-                .apiKey(OPENAI_API_KEY)
-                .modelName(TEXT_EMBEDDING_ADA_002)
-                .build();
+        String modelName = TEXT_EMBEDDING_ADA_002;
+        // TODO: Initiate an OpenAI embedding model. Make sure to use the OPENAI_API_KEY property as API key.
+        return null;
     }
 
     @Qualifier("huggingFaceEmbedding")
     @Bean
     public EmbeddingModel huggingFaceEmbeddingModel() {
-        return HuggingFaceEmbeddingModel.builder()
-                .accessToken(HUGGINGFACE_API_KEY)
-                .modelId("sentence-transformers/all-mpnet-base-v2")
-                .build();
+        String modelId = "sentence-transformers/all-mpnet-base-v2";
+        // TODO: Initiate a HuggingFace embedding model. Make sure to use the HUGGINGFACE_API_KEY property as access token.
+        return null;
     }
 
     @Bean
     public EmbeddingStore<TextSegment> embeddingStore() {
-        // You can use the InMemoryEmbeddingStore here or create a Weaviate store if you decided to work with Weaviate
-        // return new InMemoryEmbeddingStore<>();
-        return WeaviateEmbeddingStore.builder()
-                .apiKey(WEAVIATE_API_KEY)
-                .scheme("https")
-                .host(WEAVIATE_URL)
-                .build();
+        // TODO: Initiate an embedding store. This could be an in memory store or Weaviate (or others).
+        // In memory store is the faster way now (doesn't require a Weaviate cluster), but you need Weaviate for (bonus) assignment 4.
+        // When using Weaviate, set objectClass to "FAQ".
+        return null;
     }
 
     @Bean
-    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore) {
-        return EmbeddingStoreRetriever.from(embeddingStore, openAiEmbeddingModel(), 4);
+    public EmbeddingStoreRetriever embeddingStoreRetriever(EmbeddingStore<TextSegment> embeddingStore,
+                                                           @Qualifier("openaiEmbedding") EmbeddingModel embeddingModel) {
+        // TODO: Initiate an embedding store retriever. Use the embeddingStore and try both the OpenAI or HuggingFace models (change the qualifier name).
+        // Also play around with maxResults and minScore and see what influence that has on the results. The minScore should be a number between 0 and 1.
+        return null;
     }
 }
