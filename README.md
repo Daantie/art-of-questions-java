@@ -3,17 +3,17 @@ Repository containing required resources for our workshop titled: The Art of Que
 
 There are two flavours of this workshop. Choose the Python approach, if you want more features and a vibrant ecosystem. Or choose the Java approach, if you are more comfortable with Java. Both languages work for this workshop.
 
-Java is this repository, you can find the pyhon edition here:
+This is the Java repository for the workshop, you can find the python edition here:
 [Art of Questions - Python](https://github.com/jettro/art-of-questions)
 
 ## Setup the repository
-This repository makes use of Maven and Java 17, so make sure your system/environment is able to work with those.
+This repository makes use of Maven (for dependency management) and Java 17, so make sure your system/environment is able to work with those.
 
-We are integrating with a number of other tools and services. For that, we need some API keys. These should be added as environment variables, so they won't end up in your code repository. You can add them in your IDE run configuration, or you can check this page if you want to add them in your bash environment: https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html
+We are integrating with a number of other tools and services. For that, we need some API keys. These should be added as environment variables, so they won't end up in your code repository. You can add them in your IDE run configuration, or you can check this page if you need to add them to your system environment variables: https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html
 
 The environment variables we need for this workshop are as follows:
 - OPENAI_API_KEY
-- HUGGINGFACEHUB_API_KEY
+- HUGGINGFACE_API_KEY
 - UNSTRUCTURED_API_KEY
 - WEAVIATE_API_KEY
 - WEAVIATE_CLUSTER_URL
@@ -30,6 +30,6 @@ To get an API key for HuggingFace you need an account. After creating an account
 For unstructured.io you need to register for an API key. This can be done here: https://unstructured.io/#get-api-key. The API key will be sent to your email. Be sure to check your spam folder if you're not seeing it.
 
 ### Weaviate API key and cluster URL
-Go to https://console.weaviate.cloud/ to create an account if you don't have one already. Sign in to the Weaviate Cloud Services. Press the `+ Create cluster` button and create a free sandbox cluster. 
-Give it an appropriate name, make sure authentication is enabled (default) and press `Create`. When the creation of the cluster is finished (could take a couple minutes), press `Details` to view your cluster details.
+Go to https://console.weaviate.cloud/ to create an account if you don't have one already. Sign in to the Weaviate Cloud Services. Press the `+ Create cluster` button and create a free sandbox cluster.
+Give it an appropriate name, make sure authentication is enabled (default) and press `Create`. When the creation of the cluster is finished (could take a couple of minutes), press `Details` to view your cluster details.
 Here you can find your cluster URL and your automatically generated API key (press `API keys`).
